@@ -1,6 +1,12 @@
 package org.consoleadmin;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Client {
+
+    @Id
     private int empId;
     private String empName;
     private int empAge;
