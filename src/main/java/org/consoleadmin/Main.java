@@ -2,7 +2,6 @@ package org.consoleadmin;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class Main {
@@ -15,19 +14,13 @@ public class Main {
 
         Client c2 = null;
 
-//        Configuration cfg = new Configuration();
-//        cfg.addAnnotatedClass(org.consoleadmin.Client.class);
-//        cfg.configure();
-
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(org.consoleadmin.Client.class)
                 .configure()
                 .buildSessionFactory();
         Session session = sf.openSession();
 
-        Transaction transaction = session.beginTransaction();
-        session.persist(c); //using newer version
-        transaction.commit();
+        c2 = session.get(Client.class,102);
         session.close();
         sf.close();
 
