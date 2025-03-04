@@ -16,7 +16,6 @@ public class Main {
         Configuration cfg = new Configuration();
         cfg.addAnnotatedClass(org.consoleadmin.Client.class);
         cfg.configure();
-
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.openSession();
 
