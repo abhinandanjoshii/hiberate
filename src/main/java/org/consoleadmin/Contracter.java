@@ -3,17 +3,13 @@ package org.consoleadmin;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="contracter_table")
 public class Contracter {
 
     @Id
     private int uid;
-    @Column(name="contracter_name")
     private String name;
-    // skip this detail to be upserted to db, only used for operation
-
-    @Transient
     private String tech;
+    private ContracterDetails contracterConfigs;
 
     public int getUid() {
         return uid;
@@ -39,12 +35,21 @@ public class Contracter {
         this.tech = tech;
     }
 
+    public ContracterDetails getContracterConfigs() {
+        return contracterConfigs;
+    }
+
+    public void setContracterConfigs(ContracterDetails contracterConfigs) {
+        this.contracterConfigs = contracterConfigs;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "Contracter{" +
                 "uid=" + uid +
                 ", name='" + name + '\'' +
                 ", tech='" + tech + '\'' +
+                ", contracterConfigs=" + contracterConfigs +
                 '}';
     }
 }

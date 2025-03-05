@@ -8,10 +8,16 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     public static void main(String[] args) {
 
+        ContracterDetails cDetail = new ContracterDetails();
+        cDetail.setCompanyName("Console Tech");
+        cDetail.setPaymentAmount(109021);
+        cDetail.setCoveredAreaName("New York");
+
         Contracter u = new Contracter();
         u.setUid(1);
         u.setName("consoleAdmin");
         u.setTech("hibernate");
+        u.setContracterConfigs(cDetail);
 
 
         SessionFactory sf = new Configuration()
@@ -25,6 +31,9 @@ public class Main {
         session.persist(u);
 
         transaction.commit();
+
+        Contracter output = session.get(Contracter.class,1);
+        System.out.println(output);
 
         session.close();
         sf.close();
