@@ -8,32 +8,26 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     public static void main(String[] args) {
 
-//        Client c = new Client();
-//        c.setEmpAge(23);
-//        c.setEmpName("consoleAdminSix");
-//        c.setEmpId(178);
+        Contracter u = new Contracter();
+        u.setUid(1);
+        u.setName("consoleAdmin");
+        u.setTech("hibernate");
 
 
         SessionFactory sf = new Configuration()
-                .addAnnotatedClass(org.consoleadmin.Client.class)
+                .addAnnotatedClass(Contracter.class)
                 .configure()
                 .buildSessionFactory();
         Session session = sf.openSession();
 
-        // delete data first get from db
-        Client c1 = session.get(Client.class,178);
         Transaction transaction = session.beginTransaction();
 
-        // updating data if present, else create
-        // session.merge(c);
-
-        session.remove(c1);
+        session.persist(u);
 
         transaction.commit();
 
         session.close();
         sf.close();
 
-        System.out.println(c1);
     }
 }
