@@ -35,6 +35,7 @@ public class Main {
         Contracter output = session.get(Contracter.class,1);
         System.out.println(output);
 
+        // session close
         session.close();
         sf.close();
 
