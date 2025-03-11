@@ -1,13 +1,35 @@
 package org.consoleadmin;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
-@Embeddable
+@Entity
 public class ContracterDetails {
 
+    @Id
+    private int cId;
     private String companyName;
     private String coveredAreaName;
     private int paymentAmount;
+    @ManyToOne
+    private Contracter contracter;
+
+    public int getcId() {
+        return cId;
+    }
+
+    public Contracter getContracter() {
+        return contracter;
+    }
+
+    public void setContracter(Contracter contracter) {
+        this.contracter = contracter;
+    }
+
+    public void setcId(int cId) {
+        this.cId = cId;
+    }
 
     public String getCompanyName() {
         return companyName;
@@ -36,7 +58,8 @@ public class ContracterDetails {
     @Override
     public String toString() {
         return "ContracterDetails{" +
-                "companyName='" + companyName + '\'' +
+                "cId=" + cId +
+                ", companyName='" + companyName + '\'' +
                 ", coveredAreaName='" + coveredAreaName + '\'' +
                 ", paymentAmount=" + paymentAmount +
                 '}';

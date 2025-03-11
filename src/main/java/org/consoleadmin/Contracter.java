@@ -1,6 +1,10 @@
 package org.consoleadmin;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
 
 @Entity
 public class Contracter {
@@ -9,7 +13,8 @@ public class Contracter {
     private int uid;
     private String name;
     private String tech;
-    private ContracterDetails contracterConfigs;
+    @OneToMany(mappedBy = "contracter")
+    private List<ContracterDetails> contractersConfigs;
 
     public int getUid() {
         return uid;
@@ -35,12 +40,12 @@ public class Contracter {
         this.tech = tech;
     }
 
-    public ContracterDetails getContracterConfigs() {
-        return contracterConfigs;
+    public List<ContracterDetails> getContractersConfigs() {
+        return contractersConfigs;
     }
 
-    public void setContracterConfigs(ContracterDetails contracterConfigs) {
-        this.contracterConfigs = contracterConfigs;
+    public void setContractersConfigs(List<ContracterDetails> contractersConfigs) {
+        this.contractersConfigs = contractersConfigs;
     }
 
     @Override
@@ -49,7 +54,7 @@ public class Contracter {
                 "uid=" + uid +
                 ", name='" + name + '\'' +
                 ", tech='" + tech + '\'' +
-                ", contracterConfigs=" + contracterConfigs +
+                ", contractersConfigs=" + contractersConfigs +
                 '}';
     }
 }

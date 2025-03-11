@@ -5,29 +5,44 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
 
-        ContracterDetails cDetail = new ContracterDetails();
-        cDetail.setCompanyName("Console Tech");
-        cDetail.setPaymentAmount(109021);
-        cDetail.setCoveredAreaName("New York");
+        ContracterDetails cDetailOne = new ContracterDetails();
+        cDetailOne.setcId(12);
+        cDetailOne.setCompanyName("Console Tech");
+        cDetailOne.setPaymentAmount(109021);
+        cDetailOne.setCoveredAreaName("New York");
+
+        ContracterDetails cDetailTwo = new ContracterDetails();
+        cDetailTwo.setcId(122);
+        cDetailTwo.setCompanyName("Tech Console");
+        cDetailTwo.setPaymentAmount(100);
+        cDetailTwo.setCoveredAreaName("Los Angeles");
+
 
         Contracter u = new Contracter();
         u.setUid(1);
         u.setName("consoleAdmin");
         u.setTech("hibernate");
-        u.setContracterConfigs(cDetail);
+        u.setContractersConfigs(Arrays.asList(cDetailOne,cDetailTwo));
 
+        cDetailOne.setContracter(u);
+        cDetailTwo.setContracter(u);
 
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(Contracter.class)
+                .addAnnotatedClass(ContracterDetails.class)
                 .configure()
                 .buildSessionFactory();
         Session session = sf.openSession();
 
         Transaction transaction = session.beginTransaction();
 
+        session.persist(cDetailOne); // mapping cDetailOne and persisting
+        session.persist(cDetailTwo);
         session.persist(u);
 
         transaction.commit();
