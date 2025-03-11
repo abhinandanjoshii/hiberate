@@ -9,6 +9,7 @@ public class Contracter {
     private int uid;
     private String name;
     private String tech;
+    @OneToOne
     private ContracterDetails contracterConfigs;
 
     public int getUid() {

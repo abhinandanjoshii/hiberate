@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         ContracterDetails cDetail = new ContracterDetails();
+        cDetail.setcId(12);
         cDetail.setCompanyName("Console Tech");
         cDetail.setPaymentAmount(109021);
         cDetail.setCoveredAreaName("New York");
@@ -22,12 +23,14 @@ public class Main {
 
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(Contracter.class)
+                .addAnnotatedClass(ContracterDetails.class)
                 .configure()
                 .buildSessionFactory();
         Session session = sf.openSession();
 
         Transaction transaction = session.beginTransaction();
 
+        session.persist(cDetail); // mapping cDetail and persisting
         session.persist(u);
 
         transaction.commit();

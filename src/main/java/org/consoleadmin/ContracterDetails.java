@@ -1,13 +1,24 @@
 package org.consoleadmin;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
-@Embeddable
+@Entity
 public class ContracterDetails {
 
+    @Id
+    private int cId;
     private String companyName;
     private String coveredAreaName;
     private int paymentAmount;
+
+    public int getcId() {
+        return cId;
+    }
+
+    public void setcId(int cId) {
+        this.cId = cId;
+    }
 
     public String getCompanyName() {
         return companyName;
@@ -36,7 +47,8 @@ public class ContracterDetails {
     @Override
     public String toString() {
         return "ContracterDetails{" +
-                "companyName='" + companyName + '\'' +
+                "cId=" + cId +
+                ", companyName='" + companyName + '\'' +
                 ", coveredAreaName='" + coveredAreaName + '\'' +
                 ", paymentAmount=" + paymentAmount +
                 '}';
