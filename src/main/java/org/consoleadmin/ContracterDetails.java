@@ -2,7 +2,9 @@ package org.consoleadmin;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+
+import java.util.List;
 
 @Entity
 public class ContracterDetails {
@@ -12,19 +14,19 @@ public class ContracterDetails {
     private String companyName;
     private String coveredAreaName;
     private int paymentAmount;
-    @ManyToOne
-    private Contracter contracter;
+    @ManyToMany(mappedBy = "contractersConfigs")
+    private List<Contracter> contracters;
 
     public int getcId() {
         return cId;
     }
 
-    public Contracter getContracter() {
-        return contracter;
+    public List<Contracter> getContracters() {
+        return contracters;
     }
 
-    public void setContracter(Contracter contracter) {
-        this.contracter = contracter;
+    public void setContracters(List<Contracter> contracters) {
+        this.contracters = contracters;
     }
 
     public void setcId(int cId) {
