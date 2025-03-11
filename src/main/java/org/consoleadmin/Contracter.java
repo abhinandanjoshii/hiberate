@@ -13,7 +13,7 @@ public class Contracter {
     private int uid;
     private String name;
     private String tech;
-    @OneToMany
+    @OneToMany(mappedBy = "contracter")
     private List<ContracterDetails> contractersConfigs;
 
     public int getUid() {
