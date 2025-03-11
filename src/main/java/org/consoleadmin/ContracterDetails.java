@@ -2,6 +2,7 @@ package org.consoleadmin;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class ContracterDetails {
@@ -11,9 +12,19 @@ public class ContracterDetails {
     private String companyName;
     private String coveredAreaName;
     private int paymentAmount;
+    @ManyToOne
+    private Contracter contracter;
 
     public int getcId() {
         return cId;
+    }
+
+    public Contracter getContracter() {
+        return contracter;
+    }
+
+    public void setContracter(Contracter contracter) {
+        this.contracter = contracter;
     }
 
     public void setcId(int cId) {

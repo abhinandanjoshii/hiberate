@@ -29,6 +29,8 @@ public class Main {
         u.setTech("hibernate");
         u.setContractersConfigs(Arrays.asList(cDetailOne,cDetailTwo));
 
+        cDetailOne.setContracter(u);
+        cDetailTwo.setContracter(u);
 
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(Contracter.class)
