@@ -16,9 +16,14 @@ public class Main {
                 .buildSessionFactory();
         Session session = sf.openSession();
 
-        Query query = session.createQuery("from ContracterDetails where cId=13");
+        int id = 13;
+        Query query = session.createQuery("from ContracterDetails where cId=?1");
+        query.setParameter(1,id);
         List<ContracterDetails> list = query.getResultList();
-
+        // Lazy Fetching
+        ContracterDetails contracterDetailss = session.byId(ContracterDetails.class).getReference(2);
+        // Normal Fetching
+        ContracterDetails normal = session.get(ContracterDetails.class,2);
         System.out.println(list);
         session.close();
         sf.close();
