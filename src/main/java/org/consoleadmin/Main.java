@@ -22,15 +22,25 @@ public class Main {
         cDetailTwo.setPaymentAmount(100);
         cDetailTwo.setCoveredAreaName("Los Angeles");
 
+        ContracterDetails cDetailThree = new ContracterDetails();
+        cDetailThree.setcId(3);
+        cDetailThree.setCompanyName("Abhii Tech Console");
+        cDetailThree.setPaymentAmount(200);
+        cDetailThree.setCoveredAreaName("Ireland");
 
-        Contracter u = new Contracter();
-        u.setUid(1);
-        u.setName("consoleAdmin");
-        u.setTech("hibernate");
-        u.setContractersConfigs(Arrays.asList(cDetailOne,cDetailTwo));
 
-        cDetailOne.setContracter(u);
-        cDetailTwo.setContracter(u);
+        Contracter u1 = new Contracter();
+        u1.setUid(1);
+        u1.setName("consoleAdmin");
+        u1.setTech("hibernate");
+
+        Contracter u2 = new Contracter();
+        u2.setUid(2);
+        u2.setName("AdminConsoleAdmin");
+        u2.setTech("C#");
+
+        u1.setContractersConfigs(Arrays.asList(cDetailOne,cDetailTwo));
+        u2.setContractersConfigs(Arrays.asList(cDetailThree));
 
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(Contracter.class)
@@ -41,16 +51,20 @@ public class Main {
 
         Transaction transaction = session.beginTransaction();
 
-        session.persist(cDetailOne); // mapping cDetailOne and persisting
+        session.persist(cDetailOne);
         session.persist(cDetailTwo);
-        session.persist(u);
+        session.persist(cDetailThree);
+
+        session.persist(u1);
+        session.persist(u2);
 
         transaction.commit();
 
-        Contracter output = session.get(Contracter.class,1);
-        System.out.println(output);
+        Session cacheCheck = sf.openSession();
 
-        // session close
+        Contracter output = cacheCheck.get(Contracter.class,1);
+
+        cacheCheck.close();
         session.close();
         sf.close();
 

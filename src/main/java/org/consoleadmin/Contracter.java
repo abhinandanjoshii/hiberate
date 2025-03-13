@@ -1,6 +1,7 @@
 package org.consoleadmin;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -13,7 +14,7 @@ public class Contracter {
     private int uid;
     private String name;
     private String tech;
-    @OneToMany(mappedBy = "contracter")
+    @OneToMany(fetch = FetchType.EAGER)
     private List<ContracterDetails> contractersConfigs;
 
     public int getUid() {
