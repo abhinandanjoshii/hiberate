@@ -24,7 +24,6 @@ public class Main {
         System.out.println(cc);
         s1.close();
 
-
         session.close();
         sf.close();
 
