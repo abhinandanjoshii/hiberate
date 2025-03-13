@@ -62,12 +62,7 @@ public class Main {
 
         Session cacheCheck = sf.openSession();
 
-        // lazy fetch -> no contracterConfigs by default!
         Contracter output = cacheCheck.get(Contracter.class,1);
-
-        // NOT lazy fetch no contracterConfigs -> used PRINT to print.
-        Contracter outputOne = cacheCheck.get(Contracter.class,1);
-        System.out.println(outputOne);
 
         cacheCheck.close();
         session.close();
