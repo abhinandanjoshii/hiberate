@@ -2,9 +2,6 @@ package org.consoleadmin;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-
-import java.util.List;
 
 @Entity
 public class ContracterDetails {
@@ -14,19 +11,10 @@ public class ContracterDetails {
     private String companyName;
     private String coveredAreaName;
     private int paymentAmount;
-    @ManyToMany(mappedBy = "contractersConfigs")
-    private List<Contracter> contracters;
+
 
     public int getcId() {
         return cId;
-    }
-
-    public List<Contracter> getContracters() {
-        return contracters;
-    }
-
-    public void setContracters(List<Contracter> contracters) {
-        this.contracters = contracters;
     }
 
     public void setcId(int cId) {

@@ -39,18 +39,8 @@ public class Main {
         u2.setName("AdminConsoleAdmin");
         u2.setTech("C#");
 
-        Contracter u3 = new Contracter();
-        u3.setUid(3);
-        u3.setName("Admin");
-        u3.setTech("SpringBoot");
-
         u1.setContractersConfigs(Arrays.asList(cDetailOne,cDetailTwo));
-        u2.setContractersConfigs(Arrays.asList(cDetailTwo,cDetailThree));
-        u3.setContractersConfigs(Arrays.asList(cDetailOne));
-
-        cDetailOne.setContracters(Arrays.asList(u1,u3));
-        cDetailTwo.setContracters(Arrays.asList(u1,u2));
-        cDetailThree.setContracters(Arrays.asList(u1));
+        u2.setContractersConfigs(Arrays.asList(cDetailThree));
 
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(Contracter.class)
@@ -67,14 +57,15 @@ public class Main {
 
         session.persist(u1);
         session.persist(u2);
-        session.persist(u3);
-
 
         transaction.commit();
 
-        Contracter output = session.get(Contracter.class,2);
-        System.out.println(output);
+        Session cacheCheck = sf.openSession();
 
+        Contracter output = cacheCheck.get(Contracter.class,1);
+//        System.out.println(output);
+
+        cacheCheck.close();
         session.close();
         sf.close();
 

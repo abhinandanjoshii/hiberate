@@ -2,7 +2,7 @@ package org.consoleadmin;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class Contracter {
     private int uid;
     private String name;
     private String tech;
-    @ManyToMany
+    @OneToMany
     private List<ContracterDetails> contractersConfigs;
 
     public int getUid() {
